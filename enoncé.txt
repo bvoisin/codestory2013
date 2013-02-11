@@ -1,0 +1,110 @@
+/enonce/1
+## Léé?choppe de monade sur Scalaskel.
+
+Sur la planéte Scalaskel, une planéte en marge de la galaxie, aux confins de l'univers, la monnaie se compte en cents, comme chez nous. 100 cents font un groD
+essimal. Le groDessimal est la monnaie standard utilisable partout sur toutes les planétes de lé?univers connu. C'est un peu compliqué é manipuler, mais si
+on ne s'en sert pas y'a toujours des erreurs d'arrondis incroyables quand on les soustrais ou on les divise, cé?est idiot, mais cé?est comme éa.  Sur Scalask
+el, on utilise rarement des groDessimaux, on utilise des piéces plus petites : Le **Foo** vaut **1 cent**, le **Bar** vaut **7 cents**, le **Qix** vaut **11 ce
+nts** et le **Baz** vaut **21 cents**.
+
+Vous tenez une échoppe de monade et autres variables méta-syntaxique sur Scalaskel. Pour faire face é lé?afflux de touristes étrangers avec les poches remp
+lies de groDessimaux vous avez besoin déé?crire un programme qui pour toute somme de 1 é 100 cents, vous donnera toutes les décompositions possibles en pié
+ces de **Foo**, **Bar**, **Qix** ou **Baz**.
+
+Par exemple, 1 cent ne peut se décomposer qué?en une seule piéce Foo.
+Par contre 7 cents peuvent se décomposer soit en 7 piéces Foo, soit en 1 piéce Bar.
+
+### Serveur Web :
+
+Votre serveur doit répondre aux requetes http GET de la forme `http://serveur/scalaskel/change/X`, `X` étant une valeur en cents de 1 é 100 cents.
+
+La réponse attendue est un json de la forme :
+
+        [{é?fooé?: w, é?baré?: x, é?qixé?: y, é?bazé?: z}, é?]
+
+Exemples
+Pour `http://serveur/scalaskel/change/1` il faut répondre :
+
+        [ {é?fooé?: 1} ]
+
+Pour `http://serveur/scalaskel/change/7` il faut répondre :
+
+        [ {é?fooé?: 7}, {é?baré?: 1} ]
+
+
+Lé?ordre des valeurs dans le tableau json, ainsi que le formatage né?a pas dé?importance é partir du moment ou cé?est du json valide, il sé?entends.
+
+Bon courage !
+
+
+
+
+
+/enonce/2
+## Location d'astronef sur Jajascript
+
+Votre cousin par alliance, Martin O. sur la planête Jajascript vient de monter sa petite entreprise de vol spatial privée: Jajascript Flight Rental. Il loue a
+ux grosses corporations son astronef lorsqu'elles ont de fortes charges ou un pépin avec leurs propres appareils. Il s'occupe de la maintenance et de l'entreti
+en de son petit astronef. Il ne pouvait s'en payer qu'un pour démarrer.
+
+Ces grosses corporations envoient des commandes de location qui consistent en un intervalle de temps, et le prix qu'ils sont prêts à payer pour louer l'astronef 
+durant cet intervalle.
+
+Les commandes de tous les clients sont connues plusieurs jours à l'avance. Ce qui permet de faire un planning pour une journée.
+Les commandes viennent de plusieurs sociétés différentes et parfois elles se chevauchent. On ne peut donc pas toutes les honorer.
+
+Idéalement, il faut donc être capable de prendre les plus rentables, histoire de maximiser les gains de sa petite entreprise, et de s'acheter d'autres astrone
+fs.
+Votre cousin passe des heures é trouver le planning idéal et vous demande **pour un planning donné de calculer une solution qui maximise son gain**.
+
+### Exemple
+
+Considérez par exemple le cas où la JajaScript Flight Rental a 4 commandes :
+
+        MONAD42 : heure de départ 0, durée 5, prix 10
+        META18 : heure de départ 3, durée 7, prix 14
+        LEGACY01 : heure de départ 5, durée 9, prix 8
+        YAGNI17 : heure de départ 5, durée 9, prix 7
+
+La solution optimale consiste à accepter MONAD42 et LEGACY01, et le revenu est de `10 + 8 = 18`. Remarquez qu'une solution à partir de MONAD42 et YAGNI17 est
+faisable (l'avion serait loué sans interruption de 0 à 14) mais non optimale car le bénéfice serait que de 17.
+
+### Précisions
+
+L'identifiant d'un vol ne dépasse jamais 50 caractéres,
+les heures de départs, durée et prix sont des entiers positifs raisonnablement grands.
+
+### Serveur
+
+Votre serveur doit répondre aux requétes http POST de la forme `http://serveur/jajascript/optimize` avec un payload de la forme :
+
+        [
+                { "VOL": "NOM_VOL", "DEPART": HEURE, "DUREE": DUREE, "PRIX": PRIX },
+                ...
+        ]
+
+En reprenant l'exemple ci dessus :
+
+        [
+                { "VOL": "MONAD42", "DEPART": 0, "DUREE": 5, "PRIX": 10 },
+                { "VOL": "META18", "DEPART": 3, "DUREE": 7, "PRIX": 14 },
+                { "VOL": "LEGACY01", "DEPART": 5, "DUREE": 9, "PRIX": 8 },
+                { "VOL": "YAGNI17", "DEPART": 5, "DUREE": 9, "PRIX": 7 }
+        ]
+
+Vous devrez répondre le résultat suivant :
+
+        {
+                "gain" : 18,
+                "path" : ["MONAD42","LEGACY01"]
+        }
+
+Le gain représentant la somme optimale, path représentant l'ordre des vols.
+
+Bons calculs !
+
+
+Speed 10h45: 0:01:15.239
+avec sort DUREE ASC  => idem
+avec sort DUREE DESC  => idem
+

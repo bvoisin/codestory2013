@@ -1,0 +1,9 @@
+---
+applications:
+- name: CodeStoryByBVO
+  framework: play
+  runtime: java7
+  memory: 256M
+  instances: 1
+  url: codestorybybvo.${target-base}
+  path: dist\myfirstapp-1.0-SNAPSHOT.zip

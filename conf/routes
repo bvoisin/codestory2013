@@ -1,0 +1,22 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                           controllers.Application.index
+
+<<<<<<< HEAD
+POST	/enonce/:id					controllers.Application.enonce(id:Long)
+
+GET	    /scalaskel/change/:sum      controllers.Application.scalaskelChange(sum:Int)
+
+POST	/jajascript/optimize		controllers.Application.jajascriptOptimize
+
+GET		/vLog						controllers.Application.viewLog
+
+# Map static resources from the /public folder to the /assets URL path 
+=======
+GET     /toto						controllers.Application.toto
+# Map static resources from the /public folder to the /assets URL path
+>>>>>>> With scala
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
