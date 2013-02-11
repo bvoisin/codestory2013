@@ -16,8 +16,5 @@ dist
 /.cache
 /bin
 /.target
-<<<<<<< HEAD
 /output.txt
 /flightGraph.txt
-=======
->>>>>>> With scala
